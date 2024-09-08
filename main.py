@@ -5,6 +5,7 @@ from asteroid import Asteroid
 from asteroidfield import AsteroidField
 
 def main():
+
   pygame.init()
   screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
   p_clock = pygame.time.Clock()
@@ -25,8 +26,6 @@ def main():
     (SCREEN_HEIGHT / 2)
   )
 
-  
-
   dt = 0
 
   while True:
@@ -35,6 +34,12 @@ def main():
         return
     for sprite in updatable:
       sprite.update(dt)
+
+    for asteroid in asteroids:  
+      if asteroid.check_for_collision(player) == True:
+        print("Game Over!")
+        raise SystemExit()
+
     screen.fill("black")
     for sprite in drawable:
       sprite.draw(screen)          
