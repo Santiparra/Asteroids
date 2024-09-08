@@ -35,6 +35,7 @@ def main():
     for event in pygame.event.get():
       if event.type == pygame.QUIT:
         return
+
     for sprite in updatable:
       sprite.update(dt)
 
@@ -44,8 +45,10 @@ def main():
         raise SystemExit()
 
     screen.fill("black")
+
     for sprite in drawable:
-      sprite.draw(screen)          
+      sprite.draw(screen)   
+             
     pygame.display.flip()
 
     #FPS limiter
