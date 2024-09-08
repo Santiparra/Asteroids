@@ -39,16 +39,22 @@ def main():
     for sprite in updatable:
       sprite.update(dt)
 
-    for asteroid in asteroids:  
-      if asteroid.check_for_collision(player) == True:
+
+        
+    for asteroid in asteroids:          
+      if asteroid.check_for_collision(player):
         print("Game Over!")
         raise SystemExit()
+      for shot in shots:
+        if asteroid.check_for_collision(shot):
+          shot.kill()
+          asteroid.kill()  
 
     screen.fill("black")
 
     for sprite in drawable:
       sprite.draw(screen)   
-             
+
     pygame.display.flip()
 
     #FPS limiter
